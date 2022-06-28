@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="登录">
+    <van-nav-bar title="登录" @click-left="$router.back()">
       <template #left>
         <van-icon name="cross" />
       </template>
@@ -19,7 +19,9 @@
           },
         ]"
       >
-        <template #left-icon> <i class="toutiao toutiao-shouji"></i> </template
+        <template #left-icon>
+          <!-- <i class="toutiao toutiao-shouji"></i> -->
+          <MyIcon name="shouji"></MyIcon> </template
       ></van-field>
 
       <van-field
@@ -54,7 +56,12 @@
       </van-field>
 
       <div style="margin: 16px">
-        <van-button round block native-type="submit" class="login-btn"
+        <van-button
+          round
+          block
+          type="info"
+          native-type="submit"
+          class="login-btn"
           ><span>登录</span></van-button
         >
       </div>
@@ -64,6 +71,7 @@
 
 <script>
 import { getSmsCode, login } from '@/api/user'
+import MyIcon from '@/components/MyIcon.vue'
 export default {
   created () { },
   data () {
@@ -80,6 +88,7 @@ export default {
         const res = await login(values)
         console.log(res)
         this.$store.commit('setUser', res.data.data)
+        this.$router.push({ name: 'my' })
       } catch (err) {
         console.log(err)
       }
@@ -105,7 +114,7 @@ export default {
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: { MyIcon }
 }
 </script>
 

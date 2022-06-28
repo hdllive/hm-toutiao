@@ -1,5 +1,4 @@
 import request from '@/utils/request'
-import store from '@/store'
 
 // 获取短信验证码
 // 返回值是promise
@@ -24,9 +23,6 @@ export const login = ({ mobile, code }) => {
 // 获取用户信息
 export const getUserInfo = () => {
   return request({
-    url: '/user',
-    headers: {
-      Authorization: 'Bearer ' + store.state.user.token
-    }
+    url: '/user'
   })
 }
